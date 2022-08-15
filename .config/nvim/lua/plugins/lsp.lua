@@ -13,9 +13,11 @@ require("mason-lspconfig").setup(
     }
   }
 )
-local inlay_hints = require("inlay-hints")
+local rt = require("rust-tools")
 
-inlay_hints.setup({only_current_line = true})
+-- local inlay_hints = require("inlay-hints")
+
+-- inlay_hints.setup({only_current_line = true})
 
 local lspconfig = require("lspconfig")
 
@@ -44,8 +46,17 @@ lspconfig.sumneko_lua.setup {
   capabilities = capabilities,
 
   settings = {
-    Lua = {runtime = {version = 'LuaJIT'}, diagnostics = {globals = {'vim'}}}
-  }
+    Lua = {
+      runtime = {version = 'LuaJIT'},
+      diagnostics = {globals = {'vim'}},
+      format = {enable = false}
+    }
+  },
+
+  on_attach = function(client)
+    client.resolved_capabilities.document_formatting = false
+  end
+
 }
 
 lspconfig.efm.setup {
@@ -70,7 +81,7 @@ lspconfig.efm.setup {
 
 lspconfig.pyright.setup {capabilities = capabilities}
 
-lspconfig.rust_analyzer.setup {
+--[[ lspconfig.rust_analyzer.setup {
   capabilities = capabilities,
   settings = {
     ["rust-analyzer"] = {
@@ -127,7 +138,13 @@ lspconfig.rust_analyzer.setup {
 
     inlay_hints.cache()
   end
-}
+} ]]
+rt.setup(
+  {
+    tools = {inlay_hints = {only_current_line = true}},
+    server = {capabilities = capabilities}
+  }
+)
 
 lspconfig.dockerls.setup {capabilities = capabilities}
 

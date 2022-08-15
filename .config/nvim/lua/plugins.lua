@@ -48,14 +48,14 @@ local cb = function(use)
     run = './install.sh',
     requires = 'hrsh7th/nvim-cmp'
   }
-  use('simrat39/inlay-hints.nvim')
+  -- use('simrat39/inlay-hints.nvim')
+  use {'simrat39/rust-tools.nvim'}
 
   -- snippets
   use {'L3MON4D3/LuaSnip'}
   use {'saadparwaiz1/cmp_luasnip'}
 
   use {'windwp/nvim-autopairs'}
-  use {'simrat39/rust-tools.nvim'}
   use {'andymass/vim-matchup'}
   use {'jose-elias-alvarez/null-ls.nvim'}
   use {
