@@ -40,7 +40,7 @@ lspconfig.eslint.setup {
   flags = {debounce_text_changes = 250}
 }
 
-lspconfig.tailwindcss.setup {filetypes = {"javascriptreact", "typescriptreact"}}
+-- lspconfig.tailwindcss.setup {filetypes = {"javascriptreact", "typescriptreact"}}
 
 lspconfig.sumneko_lua.setup {
   capabilities = capabilities,
@@ -142,75 +142,27 @@ lspconfig.pyright.setup {capabilities = capabilities}
 rt.setup(
   {
     tools = {inlay_hints = {only_current_line = true}},
-    server = {capabilities = capabilities}
+    server = {
+      capabilities = capabilities,
+      settings = {
+        ["rust-analyzer"] = {
+          checkOnSave = {
+            allFeatures = true,
+            overrideCommand = {
+              'cargo',
+              'clippy',
+              '--message-format=json',
+            }
+          },
+          rustfmt = {extraArgs = {"+nightly"}},
+          completion = {callable = {snippets = "fill_arguments"}}
+        }
+      }
+    }
   }
 )
 
 lspconfig.dockerls.setup {capabilities = capabilities}
-
---[[ require('rust-tools').setup(
-  {
-    tools = {
-      -- hover_actions = {auto_focus = true},
-      inlay_hints = {
-        -- only_current_line = true,
-        -- only_current_line_autocmd = "CursorMoved"
-        show_variable_name = true
-      }
-    },
-    server = {capabilities = capabilities}
-  }
-) ]]
-
---[[ lspconfig.rust_analyzer.setup{
-    settings = {
-      ["rust-analyzer"] = {
-                rustfmt = {extraArgs = {"+nightly"}},
-        procMacro = {
-          ignored = {["async-trait"] = {"async_trait"}, ["tokio"] = {"test"}}
-        }
-      }
-    },
-    capabilities = require('cmp_nvim_lsp').update_capabilities(
-      vim.lsp.protocol.make_client_capabilities()
-    )
-  }
-
-  require('rust-tools').setup(
-    {
-      tools = {
-        hover_actions = {auto_focus = true},
-        inlay_hints = {
-          only_current_line = true,
-          only_current_line_autocmd = "CursorMoved"
-        }
-      },
-      server = vim.tbl_deep_extend("force", server:get_default_options(), opts)
-    }
-  ) ]]
-
--- on ready callback for the installer
---[[ lsp_installer.on_server_ready(
-  function(server)
-    local opts = {}
-
-    -- let rust tools handle the config
-    if server.name == "rust_analyzer" then
-      setup_rust_analyzer(server)
-      return
-    end
-
-    --[[ opts.capabilities = require('cmp_nvim_lsp').update_capabilities(
-                          vim.lsp.protocol.make_client_capabilities()
-                        ) ]]
-
---[[ if lspconfig.[server.name] ~= nil then
-      lspconfig.[server.name](opts)
-    end
-
-    server:setup(opts)
-  end
-) ]]
 
 -- commands
 local map = vim.api.nvim_set_keymap
