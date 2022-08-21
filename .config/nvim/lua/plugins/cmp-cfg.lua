@@ -43,7 +43,7 @@ cmp.setup(
         {name = 'buffer'}
       }
     ),
-    view = {entries = 'native'},
+    -- view = {entries = 'native'},
     window = {
       completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered()

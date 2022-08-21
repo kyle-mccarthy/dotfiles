@@ -139,6 +139,9 @@ lspconfig.pyright.setup {capabilities = capabilities}
     inlay_hints.cache()
   end
 } ]]
+
+lspconfig.taplo.setup {capabilities = capabilities}
+
 rt.setup(
   {
     tools = {inlay_hints = {only_current_line = true}},
@@ -148,11 +151,7 @@ rt.setup(
         ["rust-analyzer"] = {
           checkOnSave = {
             allFeatures = true,
-            overrideCommand = {
-              'cargo',
-              'clippy',
-              '--message-format=json',
-            }
+            overrideCommand = {'cargo', 'clippy', '--message-format=json'}
           },
           rustfmt = {extraArgs = {"+nightly"}},
           completion = {callable = {snippets = "fill_arguments"}}
