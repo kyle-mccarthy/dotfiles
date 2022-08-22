@@ -34,7 +34,7 @@ vim.api.nvim_set_keymap(
 vim.diagnostic.config({virtual_text = false})
 
 local set_code_style_condensed = function()
-  local opts = { scope = "local" }
+  local opts = {scope = "local"}
   vim.api.nvim_set_option_value('tabstop', 2, opts)
   vim.api.nvim_set_option_value('tabstop', 2, opts)
   vim.api.nvim_set_option_value('shiftwidth', 2, opts)
@@ -48,3 +48,11 @@ vim.api.nvim_create_autocmd(
   {'FileType'}, {pattern = 'toml', callback = set_code_style_condensed}
 )
 
+vim.api.nvim_create_autocmd(
+  {'BufWritePre'}, {
+    pattern = 'rust',
+    callback = function()
+      vim.lsp.buf.formatting_sync(nil, 1000)
+    end
+  }
+)
