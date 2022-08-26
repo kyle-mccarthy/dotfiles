@@ -151,7 +151,7 @@ rt.setup(
         ["rust-analyzer"] = {
           checkOnSave = {
             allFeatures = true,
-            overrideCommand = {'cargo', 'clippy', '--message-format=json'}
+            overrideCommand = {'cargo', 'clippy', '--message-format=json', '--all-targets', '--all-features'}
           },
           rustfmt = {extraArgs = {"+nightly"}},
           completion = {callable = {snippets = "fill_arguments"}}
