@@ -65,16 +65,17 @@ local cb = function(use)
   -- use {"github/copilot.vim"}
   use {
     "zbirenbaum/copilot.lua",
-    event = {"VimEnter"},
     config = function()
-      vim.defer_fn(
-        function()
-          require("copilot").setup()
-        end, 100
-      )
+      require("copilot").setup()
     end
   }
-  use {"zbirenbaum/copilot-cmp", module = "copilot_cmp"}
+  use {
+    "zbirenbaum/copilot-cmp",
+    after = {"copilot.lua", "nvim-cmp"},
+    config = function()
+      require("copilot_cmp").setup()
+    end
+  }
 
   -- utils
   use {'nvim-lua/plenary.nvim'}

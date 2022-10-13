@@ -52,11 +52,6 @@ lspconfig.sumneko_lua.setup {
       format = {enable = false}
     }
   },
-
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-  end
-
 }
 
 lspconfig.efm.setup {
@@ -73,72 +68,9 @@ lspconfig.efm.setup {
       }
     }
   },
-
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = true
-  end
 }
 
 lspconfig.pyright.setup {capabilities = capabilities}
-
---[[ lspconfig.rust_analyzer.setup {
-  capabilities = capabilities,
-  settings = {
-    ["rust-analyzer"] = {
-      checkOnSave = {
-        allFeatures = true,
-        overrideCommand = {
-          'cargo',
-          'clippy',
-          '--workspace',
-          '--message-format=json',
-          '--all-targets',
-          '--all-features'
-        }
-      },
-      rustfmt = {extraArgs = {"+nightly"}},
-      completion = {callable = {snippets = "fill_arguments"}}
-    }
-  },
-  on_attach = function(c, bufnr)
-
-    vim.api.nvim_create_autocmd(
-      {
-        "BufWritePost",
-        "BufReadPost",
-        "BufEnter",
-        "BufWinEnter",
-        "TabEnter",
-        "TextChanged",
-        "TextChangedI"
-      }, {
-        buffer = bufnr,
-        callback = function()
-          inlay_hints.cache()
-        end
-      }
-    )
-
-    vim.api.nvim_buf_attach(
-      bufnr, false, {
-        on_detach = function()
-          inlay_hints.clear_cache(bufnr)
-        end
-      }
-    )
-
-    vim.api.nvim_create_autocmd(
-      {"CursorHold", "CursorMoved"}, {
-        buffer = bufnr,
-        callback = function()
-          inlay_hints.render()
-        end
-      }
-    )
-
-    inlay_hints.cache()
-  end
-} ]]
 
 lspconfig.taplo.setup {capabilities = capabilities}
 
@@ -151,10 +83,17 @@ rt.setup(
         ["rust-analyzer"] = {
           checkOnSave = {
             allFeatures = true,
-            overrideCommand = {'cargo', 'clippy', '--message-format=json', '--all-targets', '--all-features'}
+            overrideCommand = {
+              'cargo',
+              'clippy',
+              '--message-format=json',
+              '--all-targets',
+              '--all-features'
+            }
           },
           rustfmt = {extraArgs = {"+nightly"}},
-          completion = {callable = {snippets = "fill_arguments"}}
+          completion = {callable = {snippets = "fill_arguments"}},
+          cargo = {buildScripts = {enable = true}}
         }
       }
     }
@@ -162,6 +101,8 @@ rt.setup(
 )
 
 lspconfig.dockerls.setup {capabilities = capabilities}
+
+-- lspconfig.denols.setup { capabilities = capabilities }
 
 -- commands
 local map = vim.api.nvim_set_keymap
@@ -205,9 +146,10 @@ vim.fn.sign_define(
 ) -- information
 
 -- formatting
-vim.api.nvim_command([[command! -nargs=0 Format :lua vim.lsp.buf.formatting_sync(nil, 5000)]])
-vim.api.nvim_command([[command! -nargs=0 Fmt :lua vim.lsp.buf.formatting_sync(nil, 5000)]])
+vim.api.nvim_command([[command! -nargs=0 Format :lua vim.lsp.buf.format { async = false }]])
+vim.api.nvim_command([[command! -nargs=0 Fmt :lua vim.lsp.buf.format { async = false }]])
 vim.api.nvim_set_keymap(
-  'n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting(nil, 5000)<CR>',
+  'n', '<leader>f', '<cmd>lua vim.lsp.buf.format { async = false }<CR>',
   {noremap = true, silent = true, nowait = true}
 )
+

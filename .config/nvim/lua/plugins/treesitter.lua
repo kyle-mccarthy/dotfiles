@@ -10,7 +10,8 @@ require('nvim-treesitter.configs').setup(
       enable = true,
       extended_mode = true,
       disable = { "tsx" }
-    }
+    },
+    spell = { enabled = true }
   }
 )
 

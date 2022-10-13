@@ -24,7 +24,8 @@ theme.setup {
     NvimTreeEndOfBuffer = { bg = '$bg_d1'},
     polarSemicolon = { fg = '$fg' },
 
-    DiagnosticUnderlineError = { fg = '$red', curl = true }
+    -- DiagnosticUnderlineError = { fg = '$red', undercurl = true }
+    SpellBad = { fmt = "undercurl" }
   }
 }
 

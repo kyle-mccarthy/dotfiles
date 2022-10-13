@@ -52,7 +52,8 @@ tree.setup {
         }
       }
     }
-  }
+  },
+  filters = { exclude = {'.env'} }
 }
 
 vim.api.nvim_set_keymap(
