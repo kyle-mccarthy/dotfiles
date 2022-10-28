@@ -25,7 +25,11 @@ theme.setup {
     polarSemicolon = { fg = '$fg' },
 
     -- DiagnosticUnderlineError = { fg = '$red', undercurl = true }
-    SpellBad = { fmt = "undercurl" }
+    SpellBad = { fmt = "undercurl" },
+
+    IlluminatedWordText = { bg = "$bg2" },
+    IlluminatedWordRead = { bg = "$bg2" },
+    IlluminatedWordWrite = { bg = "$bg2" }
   }
 }
 

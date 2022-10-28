@@ -21,7 +21,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 lspconfig.tsserver.setup {
   capabilities = capabilities,
-  flags = {debounce_text_changes = 150},
+  flags = { debounce_text_changes = 150 },
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
@@ -30,8 +30,8 @@ lspconfig.tsserver.setup {
 
 lspconfig.eslint.setup {
   capabilities = capabilities,
-  settings = {format = {enable = false}},
-  flags = {debounce_text_changes = 250}
+  settings = { format = { enable = false } },
+  flags = { debounce_text_changes = 250 }
 }
 
 -- lspconfig.tailwindcss.setup {filetypes = {"javascriptreact", "typescriptreact"}}
@@ -41,18 +41,18 @@ lspconfig.sumneko_lua.setup {
 
   settings = {
     Lua = {
-      runtime = {version = 'LuaJIT'},
-      diagnostics = {globals = {'vim'}},
-      format = {enable = false}
+      runtime = { version = 'LuaJIT' },
+      diagnostics = { globals = { 'vim' } },
+      -- format = {enable = false}
     }
   },
 }
 
 lspconfig.efm.setup {
   capabilities = capabilities,
-  filetypes = {'lua'},
+  filetypes = { 'lua' },
   settings = {
-    init_options = {documentFormatting = true},
+    init_options = { documentFormatting = true },
     languages = {
       lua = {
         {
@@ -64,13 +64,13 @@ lspconfig.efm.setup {
   },
 }
 
-lspconfig.pyright.setup {capabilities = capabilities}
+lspconfig.pyright.setup { capabilities = capabilities }
 
-lspconfig.taplo.setup {capabilities = capabilities}
+lspconfig.taplo.setup { capabilities = capabilities }
 
 rt.setup(
   {
-    tools = {inlay_hints = {only_current_line = true}},
+    tools = { inlay_hints = { only_current_line = true } },
     server = {
       capabilities = capabilities,
       settings = {
@@ -85,14 +85,13 @@ rt.setup(
               '--all-features'
             }
           },
-          rustfmt = {extraArgs = {"+nightly"}},
-          completion = {callable = {snippets = "fill_arguments"}},
-          cargo = {buildScripts = {enable = true}}
+          rustfmt = { extraArgs = { "+nightly" } },
+          completion = { callable = { snippets = "fill_arguments" } },
+          cargo = { buildScripts = { enable = true } }
         }
       }
     }
   }
 )
 
-lspconfig.dockerls.setup {capabilities = capabilities}
-
+lspconfig.dockerls.setup { capabilities = capabilities }

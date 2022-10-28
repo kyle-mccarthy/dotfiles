@@ -37,7 +37,7 @@ require('plugins.nvim-tree-cfg')
 require('plugins.bufferline-cfg')
 require('plugins.dressing-cfg')
 require('plugins.fidget-cfg')
--- require('plugins.dap-cfg')
+require('plugins.illuminate-cfg')
 
 require('settings')
 

@@ -60,8 +60,8 @@ map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', options)
 map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', options)
 map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', options)
 map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', options)
-map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', options)
-map('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', options)
+-- map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', options)
+-- map('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', options)
 
 vim.api.nvim_create_user_command(
   'ShowError', function()

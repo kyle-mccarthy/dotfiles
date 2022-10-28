@@ -21,7 +21,18 @@ null_ls.setup(
       -- null_ls.builtins.diagnostics.mypy,
 
       -- docs
-      null_ls.builtins.diagnostics.vale,
+      null_ls.builtins.diagnostics.proselint.with({
+        filetypes = {'markdown', 'gitrebase', 'gitcommit'}
+      }),
+      null_ls.builtins.code_actions.proselint.with({
+        filetypes = {'markdown', 'gitrebase', 'gitcommit'}
+      }),
+      null_ls.builtins.diagnostics.cspell.with({
+        filetypes = {'markdown', 'gitrebase', 'gitcommit'}
+      }),
+      null_ls.builtins.code_actions.cspell.with({
+        filetypes = {'markdown', 'gitrebase', 'gitcommit'}
+      }),
 
       -- protoc
       null_ls.builtins.diagnostics.buf,
@@ -30,16 +41,16 @@ null_ls.setup(
           extra_args = function(params)
             local scan = require("plenary.scandir")
 
-            local paths = scan.scan_dir(params.root, {search_pattern = "buf.yaml"})
+            local paths = scan.scan_dir(params.root, { search_pattern = "buf.yaml" })
             local config = paths[1]
 
             if config then
-              return {"--config=" .. config, "--path=" .. params.bufname, "--output=" .. params.temp_path}
+              return { "--config=" .. config, "--path=" .. params.bufname, "--output=" .. params.temp_path }
             end
 
             return {}
           end,
-          args = {"format"}
+          args = { "format" }
         }
       )
 

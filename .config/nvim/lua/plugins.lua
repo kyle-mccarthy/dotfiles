@@ -58,10 +58,10 @@ local cb = function(use)
   use {'windwp/nvim-autopairs'}
   use {'andymass/vim-matchup'}
   use {'jose-elias-alvarez/null-ls.nvim'}
-  use {
-    'ThePrimeagen/refactoring.nvim',
-    requires = {{'nvim-lua/plenary.nvim'}, {'nvim-treesitter/nvim-treesitter'}}
-  }
+  -- use {
+  --   'ThePrimeagen/refactoring.nvim',
+  --   requires = {{'nvim-lua/plenary.nvim'}, {'nvim-treesitter/nvim-treesitter'}}
+  -- }
   -- use {"github/copilot.vim"}
   use {
     "zbirenbaum/copilot.lua",
@@ -82,6 +82,7 @@ local cb = function(use)
   use {'tpope/vim-abolish'} -- better substitution
   use {'tpope/vim-surround'}
   use {'b3nj5m1n/kommentary'}
+  use {'RRethy/vim-illuminate'}
 
   -- treesitter
   use {'p00f/nvim-ts-rainbow'}
@@ -89,6 +90,7 @@ local cb = function(use)
   use {'windwp/nvim-ts-autotag'}
   use {'RRethy/nvim-treesitter-textsubjects'}
   use {'lewis6991/spellsitter.nvim'}
+  use {'nvim-treesitter/nvim-treesitter-refactor'}
 
   -- debugger
   use 'mfussenegger/nvim-dap'
