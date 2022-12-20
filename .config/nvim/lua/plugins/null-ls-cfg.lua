@@ -22,16 +22,16 @@ null_ls.setup(
 
       -- docs
       null_ls.builtins.diagnostics.proselint.with({
-        filetypes = {'markdown', 'gitrebase', 'gitcommit'}
+        filetypes = { 'markdown', 'gitrebase', 'gitcommit' }
       }),
       null_ls.builtins.code_actions.proselint.with({
-        filetypes = {'markdown', 'gitrebase', 'gitcommit'}
+        filetypes = { 'markdown', 'gitrebase', 'gitcommit' }
       }),
       null_ls.builtins.diagnostics.cspell.with({
-        filetypes = {'markdown', 'gitrebase', 'gitcommit'}
+        filetypes = { 'markdown', 'gitrebase', 'gitcommit' }
       }),
       null_ls.builtins.code_actions.cspell.with({
-        filetypes = {'markdown', 'gitrebase', 'gitcommit'}
+        filetypes = { 'markdown', 'gitrebase', 'gitcommit' }
       }),
 
       -- protoc
@@ -52,9 +52,9 @@ null_ls.setup(
           end,
           args = { "format" }
         }
-      )
+      ),
 
-      -- null_ls.builtins.formatting.
+      null_ls.builtins.formatting.dprint
     }
   }
 )

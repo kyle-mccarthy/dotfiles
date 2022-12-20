@@ -56,8 +56,8 @@ vim.api.nvim_create_autocmd(
 local map = vim.api.nvim_set_keymap
 local options = {noremap = true, silent = false}
 
-map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', options)
-map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', options)
+-- map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', options)
+-- map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', options)
 map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', options)
 map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', options)
 -- map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', options)
@@ -101,3 +101,4 @@ vim.api.nvim_set_keymap(
   {noremap = true, silent = true, nowait = true}
 )
 
+require('sad').setup()

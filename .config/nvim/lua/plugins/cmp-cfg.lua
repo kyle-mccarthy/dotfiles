@@ -43,6 +43,12 @@ cmp.setup(
         {name = 'buffer'}
       }
     ),
+    sorting = {
+      priority_weight = 2,
+      comparators = {
+        cmp.config.compare.order,
+      }
+    },
     -- view = {entries = 'native'},
     window = {
       completion = cmp.config.window.bordered(),

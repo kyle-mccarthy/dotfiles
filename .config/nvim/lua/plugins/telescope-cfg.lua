@@ -1,5 +1,5 @@
 local map = vim.api.nvim_set_keymap
-local options = {noremap = true, silent = false}
+local options = { noremap = true, silent = false }
 
 map('n', '<leader>t', '<cmd>lua require("telescope.builtin").find_files()<CR>', options)
 map('n', '<leader>tg', '<cmd>lua require("telescope.builtin").live_grep()<CR>', options)
@@ -15,6 +15,10 @@ map(
   options
 )
 map('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations()<CR>', options)
+map('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', options)
+map('n', 'gs', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', options)
+
+
 
 local trouble = require("trouble.providers.telescope")
 local telescope = require("telescope")
@@ -22,7 +26,7 @@ local telescope = require("telescope")
 telescope.setup {
   defaults = {
     mappings = {
-      i = {["<c-t>"] = trouble.open_with_trouble},
+      i = { ["<c-t>"] = trouble.open_with_trouble },
       n = {
         ["<c-t>"] = trouble.open_with_trouble
       }
@@ -31,8 +35,7 @@ telescope.setup {
   pickers = {
     lsp_definitions = {
       layout_strategy = "cursor",
-      layout_config = {width = 0.5, height = 0.4}
+      layout_config = { width = 0.5, height = 0.4 }
     }
   },
 }
-

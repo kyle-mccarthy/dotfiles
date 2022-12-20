@@ -22,10 +22,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 lspconfig.tsserver.setup {
   capabilities = capabilities,
   flags = { debounce_text_changes = 150 },
-  on_attach = function(client)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  end
+  settings = { format = { enable = false } }
 }
 
 lspconfig.eslint.setup {
@@ -87,7 +84,8 @@ rt.setup(
           },
           rustfmt = { extraArgs = { "+nightly" } },
           completion = { callable = { snippets = "fill_arguments" } },
-          cargo = { buildScripts = { enable = true } }
+          cargo = { buildScripts = { enable = true } },
+          inlayHints = { lifetimeElisionHints = { enable = "always" }, reborrowHints = { enable = "always" } }
         }
       }
     }
